@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sports Alarm</title>
+  <title>Sport Alarm</title>
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -15,6 +15,7 @@
     </div>
     <div v-if="!isFenwayGame(getGames())" class="game-alert nogame">
         <h1>No Games Today!</h1>
+        <h2>Everything is good.</h2>
     </div>
   </div>
 
@@ -41,16 +42,20 @@
           return gameData
         },
         buildQuery: function (date) {
-          let thisMonth = date.getMonth() + 100;
+          let thisMonth = date.getMonth() + 101;
           thisMonth = thisMonth.toString().slice(-2);
-          let queryString = "https://gd2.mlb.com/components/game/mlb/year_" + date.getFullYear() + "/month_" + thisMonth + "/day_" + (date.getDate() + 1) + '/miniscoreboard.json'
+          let queryString = "https://gd2.mlb.com/components/game/mlb/year_" + date.getFullYear() + "/month_" + thisMonth + "/day_" + (date.getDate()) + '/miniscoreboard.json'
           return queryString;
         },
         isFenwayGame: function (games) {
           for (game in games) {
             if (games[game].home_team_city.indexOf("Boston") !== -1 ){
+              document.title="🚨 SPORT ALARM 🚨"
               this.fenwayGame = games[game];
               return true;
+            }
+            else {
+              document.title="Sport Alarm"
             }
           }
           return false;
