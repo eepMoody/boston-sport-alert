@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Welcome to Vue</title>
+  <title>Sports Alarm</title>
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
@@ -38,7 +38,7 @@
           return gameData
         },
         buildQuery: function (date) {
-          let thisMonth = date.getMonth() + 100;
+          let thisMonth = date.getMonth() + 101;
           thisMonth = thisMonth.toString().slice(-2);
           let queryString = "https://gd2.mlb.com/components/game/mlb/year_" + date.getFullYear() + "/month_" + thisMonth + "/day_" + (date.getDate() + 1) + '/miniscoreboard.json'
           return queryString;
@@ -100,7 +100,16 @@
   .redsox {
     background: red;
     color: white;
+    animation-name: redsox;
+    animation-duration: 4s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
   }
+
+  @keyframes redsox {
+    from {background: #da1e1e;}
+    to {background: #a90000}
+}
   </style>
 </body>
 </html>
