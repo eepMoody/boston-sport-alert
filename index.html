@@ -4,11 +4,12 @@
   <title>Sports Alarm</title>
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 </head>
 <body>
   <div id="app">
     <div v-if="isFenwayGame(getGames())" class="redsox game-alert">
-        <h1 class='alert-icon'>⚾</h1>
+        <h1 class='alert-icon'><i class="fa fa-baseball-ball"></i></h1>
         <h1>Red Sox Home Game</h1>
         <h2>@ {{ fenwayGame.home_time }} {{ fenwayGame.ampm }}</h2>
     </div>
@@ -40,7 +41,7 @@
           return gameData
         },
         buildQuery: function (date) {
-          let thisMonth = date.getMonth() + 101;
+          let thisMonth = date.getMonth() + 100;
           thisMonth = thisMonth.toString().slice(-2);
           let queryString = "https://gd2.mlb.com/components/game/mlb/year_" + date.getFullYear() + "/month_" + thisMonth + "/day_" + (date.getDate() + 1) + '/miniscoreboard.json'
           return queryString;
